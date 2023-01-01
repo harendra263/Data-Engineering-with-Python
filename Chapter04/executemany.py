@@ -1,11 +1,10 @@
 import psycopg2 as db
 from faker import Faker
 fake=Faker()
-data=[]
-i=2
-for r in range(1000):
-    data.append((i,fake.name(),fake.street_address(), fake.city(),fake.zipcode()))
-    i+=1
+data = [
+    (i, fake.name(), fake.street_address(), fake.city(), fake.zipcode())
+    for i, _ in enumerate(range(1000), start=2)
+]
 data_for_db=tuple(data)
 print(data_for_db)
 conn_string="dbname='dataengineering' host='localhost' user='postgres' password='postgres'"

@@ -18,9 +18,9 @@ while True:
 
     if msg is None:
         continue
-   
+
     if msg.error():
-        print("Error: {}".format(msg.error()))
+        print(f"Error: {msg.error()}")
         continue
 
     data=msg.value().decode('utf-8')

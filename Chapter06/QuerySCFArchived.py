@@ -12,16 +12,16 @@ class ModJSON(StreamCallback):
         pass
   def process(self, inputStream, outputStream):
     try:
-        param = {'place_url':'bernalillo-county','per_page':'100','status':'Archived'}
-        url = 'https://seeclickfix.com/api/v2/issues?' + urllib.urlencode(param)
-        rawreply = urllib2.urlopen(url).read()
-        reply = json.loads(rawreply)
+      param = {'place_url':'bernalillo-county','per_page':'100','status':'Archived'}
+      url = f'https://seeclickfix.com/api/v2/issues?{urllib.urlencode(param)}'
+      rawreply = urllib2.urlopen(url).read()
+      reply = json.loads(rawreply)
 
-        outputStream.write(bytearray(json.dumps(reply, indent=4).encode('utf-8')))
+      outputStream.write(bytearray(json.dumps(reply, indent=4).encode('utf-8')))
     except:
         global errorOccurred
         errorOccurred=True
-        
+
         outputStream.write(bytearray(json.dumps(reply, indent=4).encode('utf-8')))
         
 errorOccurred=False
