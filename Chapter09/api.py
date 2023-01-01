@@ -31,12 +31,12 @@ pdata['status']
 q=requests.post('http://localhost:9300/nifi-api/flowfile-queues/295fc119-0172-1000-3949-54311cdb478e/listing-requests')
 qdata=q.json()
 listid=qdata['listingRequest']['id']  # '0172100b-179f-195f-b95c-63ea96d151a3'
-url="http://localhost:9300/nifi-api/flowfile-queues/295fc119-0172-1000-3949-54311cdb478e/listing-requests/"+listid
+url = f"http://localhost:9300/nifi-api/flowfile-queues/295fc119-0172-1000-3949-54311cdb478e/listing-requests/{listid}"
 ff=requests.get(url)
 ffdata=ff.json()
 ffid=ffdata['listingRequest']['flowFileSummaries'][0]['uuid']
 #'3b2dd0fa-dfbe-458b-83e9-ea5f9dbb578f'
-ffurl="http://localhost:9300/nifi-api/flowfile-queues/295fc119-0172-1000-3949-54311cdb478e/flowfiles/"+ffid+"/content"
+ffurl = f"http://localhost:9300/nifi-api/flowfile-queues/295fc119-0172-1000-3949-54311cdb478e/flowfiles/{ffid}/content"
 download=requests.get(ffurl)
 download.json()
 

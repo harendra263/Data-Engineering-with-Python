@@ -3,8 +3,7 @@ import json
 import os
 os.chdir("/home/paulcrickard/datalake")
 fake=Faker()
-userid=1
-for i in range(1000):
+for userid, _ in enumerate(range(1000), start=1):
     name=fake.name()
     fname=name.replace(" ","-")+'.json'
     data={
@@ -19,7 +18,5 @@ for i in range(1000):
     datajson=json.dumps(data)
 
 
-    output=open(fname,'w')
-    userid+=1
-    output.write(datajson)
-    output.close()
+    with open(fname,'w') as output:
+        output.write(datajson)
